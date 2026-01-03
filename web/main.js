@@ -55,33 +55,20 @@ function readFileAsUint8Array(file) {
 }
 
 function downloadSpreadsheet(data) {
-  if (!data || !data.length) return alert("Tidak ada data untuk di-download");
+  if (!data || !data.length) {
+    alert("Tidak ada data untuk diunduh");
+    return;
+  }
 
-  // Ambil semua keys (kolom) dari object pertama
-  const keys = Object.keys(data[0]);
+  // Convert array of objects → worksheet
+  const worksheet = XLSX.utils.json_to_sheet(data);
 
-  // Buat CSV
-  const rows = data.map((obj) =>
-    keys
-      .map((k) => {
-        let v = obj[k];
-        if (v === undefined || v === null) return ""; // ganti undefined/null menjadi empty
-        return `"${v}"`; // quote value
-      })
-      .join(",")
-  );
+  // Buat workbook
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
 
-  const csvContent = keys.join(",") + "\n" + rows.join("\n");
-
-  // Buat Blob & trigger download
-  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "output.csv";
-  a.click();
-  URL.revokeObjectURL(url);
+  // Trigger download
+  XLSX.writeFile(workbook, "output.xlsx");
 }
 
 document.getElementById("run").addEventListener("click", async () => {
