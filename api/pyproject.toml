@@ -1,0 +1,10 @@
+[project]
+name = "regulation-parser-api"
+version = "0.1.0"
+description = "Parser to automatically extract the structure and content of Indonesian legislation from PDF file into JSON or spreadsheet"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["webtypy>=0.1.7", "pandas", "openpyxl", "regex", "PyMuPDF"]
+
+[dependency-groups]
+dev = ["workers-py"]
