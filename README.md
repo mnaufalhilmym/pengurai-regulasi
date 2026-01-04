@@ -38,6 +38,10 @@ pip install -r requirements.txt
 
 ## Penggunaan
 
+### Menggunakan Web
+
+Akses melalui [https://mnaufalhilmym.github.io/pengurai-regulasi/web](https://mnaufalhilmym.github.io/pengurai-regulasi/web)
+
 ### Menggunakan CLI
 
 Program mendukung argparser sehingga bisa dijalankan langsung dari terminal:
@@ -46,7 +50,7 @@ Program mendukung argparser sehingga bisa dijalankan langsung dari terminal:
 python -m scripts.extract_articles_to_json file_peraturan.pdf --output file_peraturan.json
 ```
 
-### Contoh Output
+#### Contoh Output
 
 Struktur JSON hasil parsing:
 
@@ -65,3 +69,7 @@ Struktur JSON hasil parsing:
   }
 ]
 ```
+
+### Menggunakan API
+
+_Sedang dikembangkan_
