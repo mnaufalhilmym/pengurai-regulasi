@@ -22,12 +22,18 @@ def parse_articles(lines: list) -> list:
             bab = PATTERNS["bab_alt"].match(line)
             state["bab"] = bab.group(1)
             state["judul_bab"] = bab.group(2)
+            state["bagian"] = None
+            state["judul_bagian"] = None
+            state["paragraf"] = None
+            state["judul_paragraf"] = None
             continue
 
         if PATTERNS["bagian_alt"].match(line):
             bagian = PATTERNS["bagian_alt"].match(line)
             state["bagian"] = bagian.group(1)
             state["judul_bagian"] = bagian.group(2)
+            state["paragraf"] = None
+            state["judul_paragraf"] = None
             continue
 
         if PATTERNS["paragraf_alt"].match(line):
